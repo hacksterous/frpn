@@ -124,8 +124,3 @@ A reference manual is provided [here](MANUAL.md)
 
 [Louis Rubet's Github repository]: https://github.com/louisrubet/rpn
 
-
-
-Or leave it empty and use the [link text itself].
-
-[link text itself]: http://www.reddit.com
