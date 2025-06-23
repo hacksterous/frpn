@@ -2,22 +2,21 @@
 
 ### A clone of Louis Rubet's rpn cli RPN calculator
 
-	This is a de-MPFR'd version of Louis Rubet's rpn cli RPN calculator.
-	The original is at https://github.com/louisrubet/rpn
+This is a de-MPFR'd version of Louis Rubet's rpn cli RPN calculator.
+The original is at [Louis Rubet's Github repository]
 	
-	The libraries MPFR and GMP (and the mpreal headers have been
-	replaced with long double standard libraries.
+The libraries MPFR and GMP (and the mpreal headers have been
+replaced with long double standard libraries.
 	
-	Rounding has suffered.
+Rounding has suffered.
 	
-	Testing has been minimal.
+Testing has been minimal.
 	
-	Build is now using a simple Makefile.
+Build is now using a simple Makefile.
 
-	To compile, run:
-
+To compile, run:
 ```
-	make
+make
 ```
 
 ### A math functional language using reverse (postfix) polish notation
@@ -118,45 +117,10 @@ neg      re       >        dup2     for      sneg     log10
 pow      conj     <        pick     step     eval     exp10
 ```
 
-## Download
-
-Available as source code and flatpak under [flathub](https://flathub.org/apps/category/Science) (_coming soon_).
 
 ## Manual
 
 A reference manual is provided [here](MANUAL.md)
 
-## Generation
+[Louis Rubet's Github repository]: https://github.com/louisrubet/rpn
 
-rpn is written in C++ and is dynamically linked to GNU MP and GNU MPFR.
-It integrates [linenoise-ng](https://github.com/louisrubet/linenoise-ng.git) and [mpreal](http://www.holoborodko.com/pavel/mpfr/) source code as git submodules.
-
-It can be generated following the steps below:
-
-## Generate and install under Ubuntu 20.04 LTS and superior
-
-```shell
-sudo apt install git cmake g++ libmpfr6 libmpfr-dev
-git clone https://github.com/louisrubet/rpn/ 
-mkdir -p rpn/build && cd rpn/build
-cmake ..
-make -j
-sudo make install
-```
-
-## Generate and install under Fedora 35
-
-```shell
-sudo dnf install git cmake g++ mpfr mpfr-devel
-git clone https://github.com/louisrubet/rpn/ 
-mkdir -p rpn/build && cd rpn/build
-cmake ..
-make -j
-sudo make install
-```
-
-## Contact, contribution, bug report
-
-Please email me at [louis@rubet.fr](mailto:louis@rubet.fr)
-
-You can also use [github issues](https://github.com/louisrubet/rpn/issues) and [pull requests](https://github.com/louisrubet/rpn/pulls)
