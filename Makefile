@@ -42,6 +42,9 @@ $(TARGET): $(OBJ_FILES)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
+	rm -f $(OBJ_FILES)
+
+cleanall:
 	rm -f $(OBJ_FILES) $(TARGET)
 
 .PHONY: all clean
