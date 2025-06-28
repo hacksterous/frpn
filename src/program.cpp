@@ -691,10 +691,11 @@ RetValue Program::GetLastError(void) { return err_; }
 ///
 void Program::ShowStack(bool show_separator) {
     if (stack_.size() == 1) {
+        if (show_separator) cout << "    1> ";
         cout << stack_[0] << endl;
     } else {
         for (int i = stack_.size() - 1; i >= 0; i--) {
-            if (show_separator) cout << i + 1 << "> ";
+            if (show_separator) cout << "    " << i + 1 << "> ";
             cout << stack_[i] << endl;
         }
     }

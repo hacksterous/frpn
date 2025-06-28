@@ -3,8 +3,8 @@
 #ifndef SRC_VERSION_H_
 #define SRC_VERSION_H_
 
-#ifndef RPN_VERSION
-#define RPN_VERSION "dev version"  // set by cmake from git tag
+#ifndef FRPN_VERSION
+#define FRPN_VERSION "v0.1"  // set by make from git tag
 #endif
 
 #endif  // SRC_VERSION_H_

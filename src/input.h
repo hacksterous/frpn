@@ -12,7 +12,7 @@ using std::string, std::vector;
 
 class Input {
  public:
-    Input(string& entry, vector<string>& autocompletion_list, string prompt = "rpn> ", string multiline_prompt = ">");
+    Input(string& entry, vector<string>& autocompletion_list, string prompt = "frpn> ", string multiline_prompt = ">");
     enum class InputStatus {
         kOk,     // user entered a good string
         kCtrlc,  // user pressed CtrlC

@@ -163,8 +163,8 @@ bool Lexer::stringToDouble(const char* str, long double& dbl, int base) {
 		//has a sign indicator
 		temp[0] = str[0];
 		signPos = 1;
-	} else {
-		temp[0] = '+'; //default is +
+//	} else {
+//		temp[0] = '+'; //default is +
 	}
 	if (str[signPos] == 'h' || str[signPos] == 'x' || str[signPos] == 'b') {
 		//number is of the form -x100 = decimal -256, or
@@ -174,8 +174,6 @@ bool Lexer::stringToDouble(const char* str, long double& dbl, int base) {
 			strcpy(temp + signPos, "0b");
 		else if (base == 16)
 			strcpy(temp + signPos, "0x");
-		else 
-			strcpy(temp + signPos, "00");
 		strcpy(temp + 2 + signPos, str + signPos + 1); //copy the non-standard format number
 	} else {
 		strcpy(temp + signPos, str + signPos); //copy the standard format number

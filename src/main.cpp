@@ -33,7 +33,7 @@ static void StartHistory() {
     struct passwd* pw = getpwuid(getuid());
     if (pw != nullptr) {
         stringstream history_path;
-        history_path << pw->pw_dir << "/.rpn_history";
+        history_path << pw->pw_dir << "/.frpn_history";
         linenoiseHistorySetMaxLen(100);
         linenoiseHistoryLoad(history_path.str().c_str());
     }
@@ -45,7 +45,7 @@ static void StopHistory() {
     struct passwd* pw = getpwuid(getuid());
     if (pw != nullptr) {
         stringstream history_path;
-        history_path << pw->pw_dir << "/.rpn_history";
+        history_path << pw->pw_dir << "/.frpn_history";
 
         // trunc current history
         ofstream history(history_path.str(), ios_base::out | ios_base::trunc);

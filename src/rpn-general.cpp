@@ -24,11 +24,11 @@ using std::cout, std::string, std::pair;
 static const char _description[] =
 	ATTR_BOLD "R" ATTR_OFF "everse " ATTR_BOLD "P" ATTR_OFF "olish " ATTR_BOLD "N" ATTR_OFF "otation CLI calculator";
 
-static const char _syntax[] = ATTR_BOLD "Syntax" ATTR_OFF ": rpn [command]\nwith optional command = list of commands";
+static const char _syntax[] = ATTR_BOLD "Syntax" ATTR_OFF ": frpn [command]\nwith optional command = list of commands";
 
-static const char _uname[] = ATTR_BOLD "rpn " RPN_VERSION ", (c) 2022 <louis@rubet.fr>" ATTR_OFF;
+static const char _uname[] = ATTR_BOLD "frpn " FRPN_VERSION ", (c) 2022 <louis@rubet.fr>" ATTR_OFF;
 
-static const char _welcome[] = ATTR_BOLD "rpn " RPN_VERSION ATTR_OFF "\nType h or help for more information.";
+static const char _welcome[] = ATTR_BOLD "frpn " FRPN_VERSION ATTR_OFF "\nType h or help for more information.";
 
 /// @brief quit keyword implementation
 ///
@@ -155,7 +155,7 @@ void Program::RpnSci() {
 
 /// @brief _version keyword implementation
 ///
-void Program::RpnVersion() { stack_.push_front(new String(RPN_VERSION)); }
+void Program::RpnVersion() { stack_.push_front(new String(FRPN_VERSION)); }
 
 /// @brief _uname keyword implementation
 ///
