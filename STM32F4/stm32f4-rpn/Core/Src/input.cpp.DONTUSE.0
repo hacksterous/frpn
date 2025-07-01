@@ -1,0 +1,73 @@
+// Copyright (c) 2014-2022 Louis Rubet
+
+#include "main.h"
+#include "input.h"
+
+#include <cstring>
+
+#define UART_RX_BUFFER_SIZE 128
+
+extern UART_HandleTypeDef huart1;
+uint8_t uart_rx_buffer[UART_RX_BUFFER_SIZE];
+volatile int uart_rx_head = 0;
+volatile int uart_rx_tail = 0;
+
+uint8_t uart_rx_temp;  // For single-byte interrupt reception
+
+extern void uart1_start_rx_interrupt(void);
+void HAL_UART_ErrorCallback(UART_HandleTypeDef *huart)
+{
+    if (huart->Instance == USART1) {
+        uart1_start_rx_interrupt();
+    }
+}
+
+/* UART RX interrupt callback */
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
+    if (huart->Instance == USART1) {
+        int next_head = (uart_rx_head + 1) % UART_RX_BUFFER_SIZE;
+        if (next_head != uart_rx_tail) { // Buffer not full
+            uart_rx_buffer[uart_rx_head] = uart_rx_temp;
+            uart_rx_head = next_head;
+        }
+        // Restart reception for next byte
+        HAL_UART_Receive_IT(&huart1, &uart_rx_temp, 1);
+    }
+}
+
+/* Returns 1 if a byte is available, 0 otherwise */
+int uart1_buffer_available(void) {
+    return uart_rx_head != uart_rx_tail;
+}
+
+/* Get one byte from buffer. Returns -1 if empty */
+int uart1_buffer_read(void) {
+    if (uart_rx_head == uart_rx_tail)
+        return -1;  // Buffer empty
+    uint8_t data = uart_rx_buffer[uart_rx_tail];
+    uart_rx_tail = (uart_rx_tail + 1) % UART_RX_BUFFER_SIZE;
+    return data;
+}
+
+Input::Input(string& entry, string prompt): status(InputStatus::kOk) {
+	int c_entry;
+	bool goodbye = false;
+
+	do {
+		c_entry = uart1_buffer_read();
+		if (c_entry == -1) continue;
+
+		if (c_entry == 0x03) { //keyCtrlC
+			status = InputStatus::kAbort;
+		} else if (c_entry == 0x04) { //keyCtrlD
+			goodbye = true;
+			status = InputStatus::kCtrlc;
+		} else {
+			//status = InputStatus::kError;
+			entry += char(c_entry);// string entry
+			status = InputStatus::kOk;
+		}
+	} while (!goodbye);
+
+}
+

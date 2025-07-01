@@ -1,0 +1,22 @@
+############################################################
+##
+## stm32CubeProg.sh <protocol> <file_path> <offset> [OPTIONS]
+##
+## protocol:
+##   0: SWD
+##   1: Serial
+##   2: DFU
+##   Note: prefix it by 1 to erase all sectors.
+##         Ex: 10 erase all sectors using SWD interface.
+## file_path: file path name to be downloaded: (bin, hex)
+## offset: offset to add to 0x8000000
+## Options:
+##   For SWD and DFU: no mandatory options
+##   For Serial: <com_port>
+##     com_port: serial identifier (mandatory). Ex: /dev/ttyS0 or COM1
+##
+## Note: all trailing arguments will be passed to the STM32_Programmer.sh
+##   They have to be valid commands for STM32CubeProgrammer cli
+##   Ex: -rst: Reset system
+############################################################
+sh /home/oreo/.arduino15/packages/STMicroelectronics/tools/STM32Tools/2.2.1/stm32CubeProg.sh 2 /tmp/arduino_build_537928/stm32-vga.ino.bin 0x0  
